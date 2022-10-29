@@ -59,7 +59,6 @@
 // console.log(person)
 //
 //=================================================================
-//
 // class Director {
 //     public managers: Managers[] = []
 //
@@ -88,12 +87,15 @@
 //         return projects
 //     }
 //
-//     getTeams() {
+//     getTeams(managers = this.managers) {
 //         const teams = []
 //
-//         for (let i = 0; i < this.managers.length; i++) {
-//             for (let j = 0; j < this.managers[i].project.length; j++) {
-//                 teams.push(this.managers[i].project[j].team)
+//         for (let i = 0; i < managers.length; i++) {
+//             if (managers) {
+//
+//             }
+//             for (let j = 0; j < managers[i].project.length; j++) {
+//                 teams.push(managers[i].project[j].team)
 //             }
 //         }
 //         return teams
@@ -169,14 +171,15 @@
 //     dev: Developer[] = []
 //
 //     constructor(readonly _tName: string) {
+//
 //     }
 //
 //     getAllDevelopers() {
 //         return this.dev
 //     }
 //
-//     addDeveloper(dev:Developer) {
-//         if (dev){
+//     addDeveloper(dev: Developer) {
+//         if (dev) {
 //             this.dev.push(dev)
 //         }
 //         return this.dev
@@ -300,7 +303,7 @@
 // const obj3 = copyObj(obj1)
 // // @ts-ignore
 // console.log(obj3)
-const fibonacci1 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
+// const fibonacci1 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 // @ts-ignore
 // function fibonacci1(numb) {
 //     const fib = []
@@ -322,13 +325,27 @@ const fibonacci1 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
 // }
 //
 // const fib = fibonacci1(13)
-const fibonacci = n => {
+let firstNumb = 0;
+let secondNumb = 1;
+let thirdNum = firstNumb + secondNumb;
+// @ts-ignore
+const fibonacci = (n, i = 2) => {
     const fib = [];
-    if (n <= 1) {
-        fib.push(n - 1, n);
-        return fib;
+    fib.push(firstNumb);
+    if (n > thirdNum && i < n) {
+        fib.push(thirdNum);
+        firstNumb = secondNumb;
+        secondNumb = thirdNum;
+        thirdNum = firstNumb + secondNumb;
+        fib.push(...fibonacci(n, i + 1));
     }
-    fibonacci(n - 1);
     return fib;
 };
-console.log(fibonacci(2));
+console.log(fibonacci(5));
+// function fibonacci2(num) {
+//     if (num < 2) {
+//         return num;
+//     } else {
+//         return fibonacci2(num - 1) + fibonacci2(num - 2);
+//     }
+// }
