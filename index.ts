@@ -58,6 +58,8 @@
 // console.log(person)
 //
 
+//=================================================================
+
 
 class Director {
     public managers: Managers[] = []
@@ -87,12 +89,15 @@ class Director {
         return projects
     }
 
-    getTeams() {
+    getTeams(managers = this.managers) {
         const teams = []
 
-        for (let i = 0; i < this.managers.length; i++) {
-            for (let j = 0; j < this.managers[i].project.length; j++) {
-                teams.push(this.managers[i].project[j].team)
+        for (let i = 0; i < managers.length; i++) {
+            if (managers){
+
+            }
+            for (let j = 0; j < managers[i].project.length; j++) {
+                teams.push(managers[i].project[j].team)
             }
         }
         return teams
@@ -168,14 +173,15 @@ class TeamLead {
     dev: Developer[] = []
 
     constructor(readonly _tName: string) {
+
     }
 
     getAllDevelopers() {
         return this.dev
     }
 
-    addDeveloper(dev:Developer) {
-        if (dev){
+    addDeveloper(dev: Developer) {
+        if (dev) {
             this.dev.push(dev)
         }
         return this.dev
@@ -203,3 +209,158 @@ project1.addTeam(teamLead1)
 manager1.addProject(project1)
 director1.addManager(manager1)
 console.log(director1.getTeams())
+
+//============================================================================
+
+// const data = [
+//     {
+//         name: 'Vardan',
+//         managers: [
+//             {
+//                 name: 'Karen',
+//                 projects: [
+//                     {
+//                         name: 'PADC Website',
+//                         teamLead: {
+//                             name: 'Rado Poghossian'
+//                         }
+//                     }
+//                 ]
+//             },
+//             {
+//                 name: 'Karen',
+//                 projects: [
+//                     {
+//                         name: 'PADC Website back-end',
+//                         teamLead: {
+//                             name: 'Vardan Vardanyan'
+//                         }
+//                     },
+//                     {
+//                         name: 'Music publishing back-end',
+//                         teamLead: {
+//                             name: 'Suren Vardanyan'
+//                         }
+//                     }
+//                 ]
+//             }
+//         ]
+//     }
+// ]
+
+// @ts-ignore
+
+// function findValuesWithkey(arr, argKey) {
+//     const filteredData = [];
+//     for (const item of arr) {
+//         for (const key in item) {
+//             if (key === argKey) {
+//                 filteredData.push(item[key]);
+//             }
+//             if (typeof item[key] === 'object') {
+//                 if (Array.isArray(item[key])) {
+//                     filteredData.push(...findValuesWithkey(item[key], argKey))
+//                 } else {
+//                     filteredData.push(...findValuesWithkey([item[key]], argKey))
+//                 }
+//             }
+//         }
+//     }
+//     return filteredData;
+// }
+//
+//
+// const filteredData = findValuesWithkey(data, 'projects');
+//
+// console.log('filteredData', filteredData);
+
+//==========================================================================
+// const obj1 = {
+//     position: "Developer",
+//     name: 'Armen',
+//     managers: {
+//         name: 'Valod',
+//         position: "Manager",
+//         developer:{
+//             name:'Karush'
+//         }
+//     }
+// }
+// @ts-ignore
+
+// function copyObj(objc) {
+//     let obj = {}
+//
+//     for (const obj1Key in objc) {
+//         // @ts-ignore
+//         if (typeof objc[obj1Key] === 'object') {
+//             // @ts-ignore
+//             obj[obj1Key] = copyObj(objc[obj1Key])
+//         }else {
+//             // @ts-ignore
+//             obj[obj1Key] = objc[obj1Key]
+//         }
+//     }
+//
+//     return obj
+// }
+//
+//
+//
+// // @ts-ignore
+// const obj3 = copyObj(obj1)
+
+// // @ts-ignore
+// console.log(obj3)
+
+
+// const fibonacci1 = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+// @ts-ignore
+
+
+// function fibonacci1(numb) {
+//     const fib = []
+//     let firstNumb = 0
+//     let secondNumb = 1
+//     let thirdNum = firstNumb + secondNumb
+//
+//     fib.push(firstNumb)
+//     fib.push(secondNumb)
+//
+//     for (let i = 2; i < numb && numb > thirdNum; i++) {
+//         fib.push(thirdNum)
+//         firstNumb = secondNumb
+//         secondNumb = thirdNum
+//         thirdNum = firstNumb + secondNumb
+//
+//     }
+//     return fib
+// }
+//
+// const fib = fibonacci1(13)
+
+
+// const fibonacci = n => {
+//     const fib: number[] = []
+//     if (n <= 1) {
+//         fib.push(n - 1, n)
+//         return fib;
+//     }
+//         fibonacci(n - 1)
+//     return fib
+// };
+//
+// console.log(fibonacci(2))
+
+
+// function fibonacci2(num) {
+//     if (num < 2) {
+//         return num;
+//     } else {
+//         return fibonacci2(num - 1) + fibonacci2(num - 2);
+//     }
+// }
+
+
+
