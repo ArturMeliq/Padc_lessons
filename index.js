@@ -59,154 +59,154 @@
 // console.log(person)
 //
 //=================================================================
-// class Director {
-//     public managers: Managers[] = []
-//
-//     constructor(readonly _dName: string) {
-//
-//     }
-//
-//     addManager(manager: Managers) {
-//         if (manager) {
-//             this.managers.push(manager)
-//         }
-//         return this.managers
-//     }
-//
-//     getAllManagers() {
-//         return this.managers
-//     }
-//
-//
-//     getProjects() {
-//         const projects = []
-//
-//         for (let i = 0; i < this.managers.length; i++) {
-//             projects.push(this.managers[i].project)
-//         }
-//         return projects
-//     }
-//
-//     getTeams(managers = this.managers) {
-//         const teams = []
-//
-//         for (let i = 0; i < managers.length; i++) {
-//             if (managers) {
-//
-//             }
-//             for (let j = 0; j < managers[i].project.length; j++) {
-//                 teams.push(managers[i].project[j].team)
-//             }
-//         }
-//         return teams
-//     }
-// }
-//
-// class Managers {
-//     project: Project[] = []
-//
-//     constructor(public _mName: string) {
-//
-//     }
-//
-//     addProject(project: Project) {
-//         if (project) {
-//             this.project.push(project)
-//         }
-//         return this.project
-//     }
-//
-//     getAllProjects() {
-//         return this.project
-//     }
-//
-//     getTeams() {
-//         const teams = []
-//         for (let i = 0; i < this.project.length; i++) {
-//             teams.push(this.project[i].team)
-//         }
-//         return teams
-//     }
-//
-//     getDevs() {
-//         const devs = []
-//         for (let i = 0; i < this.project.length; i++) {
-//             for (let j = 0; j < this.project[i].team.length; j++) {
-//                 devs.push(this.project[i].team[j].dev)
-//             }
-//         }
-//         return devs
-//     }
-//
-// }
-//
-// class Project {
-//     team: TeamLead[] = []
-//
-//     constructor(readonly _pName: string) {
-//
-//     }
-//
-//     getAllTeamLeads() {
-//         return this.team
-//     }
-//
-//     addTeam(teamLead: TeamLead) {
-//         if (teamLead) {
-//             this.team.push(teamLead)
-//         }
-//         return this.team
-//     }
-//
-//     getDevelopers() {
-//         let dev = []
-//         for (let i = 0; i < this.team.length; i++) {
-//             dev.push(this.team[i].dev)
-//         }
-//     }
-//
-// }
-//
-// class TeamLead {
-//     dev: Developer[] = []
-//
-//     constructor(readonly _tName: string) {
-//
-//     }
-//
-//     getAllDevelopers() {
-//         return this.dev
-//     }
-//
-//     addDeveloper(dev: Developer) {
-//         if (dev) {
-//             this.dev.push(dev)
-//         }
-//         return this.dev
-//     }
-//
-// }
-//
-// class Developer {
-//
-//     constructor(readonly _devName: string) {
-//
-//     }
-//
-// }
-//
-// const developer1 = new Developer('first Developer')
-// const teamLead1 = new TeamLead("first TeamLead")
-// const project1 = new Project('first Project')
-// const manager1 = new Managers('first Manager')
-// const director1 = new Director('first Director')
-//
-//
-// teamLead1.addDeveloper(developer1)
-// project1.addTeam(teamLead1)
-// manager1.addProject(project1)
-// director1.addManager(manager1)
-// console.log(director1.getTeams())
+class Persone {
+    findValuesWithkey(arr, argKey) {
+        const filteredData = [];
+        for (const item of arr) {
+            for (const key in item) {
+                if (key === argKey) {
+                    filteredData.push(item[key]);
+                }
+                if (typeof item[key] === 'object') {
+                    if (Array.isArray(item[key])) {
+                        filteredData.push(...this.findValuesWithkey(item[key], argKey));
+                    }
+                    else {
+                        filteredData.push(...this.findValuesWithkey([item[key]], argKey));
+                    }
+                }
+            }
+        }
+        return filteredData;
+    }
+}
+class Director extends Persone {
+    constructor(_dName) {
+        super();
+        this._dName = _dName;
+        this.managers = [];
+    }
+    addManager(manager) {
+        if (manager) {
+            this.managers.push(manager);
+        }
+        return this.managers;
+    }
+    getAllManagers() {
+        return this.managers;
+    }
+    getProjects() {
+        const projects = [];
+        for (let i = 0; i < this.managers.length; i++) {
+            projects.push(this.managers[i].project);
+        }
+        return projects;
+    }
+    // @ts-ignore
+    getTeams() {
+        // const teams = []
+        //
+        // for (let i = 0; i < this.managers.length; i++) {
+        //     for (let j = 0; j < this.managers[i].project.length; j++) {
+        //         teams.push(this.managers[i].project[j].team)
+        //     }
+        // }
+        // return teams
+        console.log(this);
+        return this.findValuesWithkey(this.managers, 'team');
+    }
+}
+class Managers {
+    constructor(_mName) {
+        this._mName = _mName;
+        this.project = [];
+    }
+    addProject(project) {
+        if (project) {
+            this.project.push(project);
+        }
+        return this.project;
+    }
+    getAllProjects() {
+        return this.project;
+    }
+    getTeams() {
+        const teams = [];
+        for (let i = 0; i < this.project.length; i++) {
+            teams.push(this.project[i].team);
+        }
+        return teams;
+    }
+    getDevs(value = this.project) {
+        // const devs = []
+        // for (let i = 0; i < this.project.length; i++) {
+        //     for (let j = 0; j < this.project[i].team.length; j++) {
+        //         devs.push(this.project[i].team[j].dev)
+        //     }
+        // }
+        // return devs
+    }
+}
+class Project {
+    constructor(_pName) {
+        this._pName = _pName;
+        this.team = [];
+    }
+    getAllTeamLeads() {
+        return this.team;
+    }
+    addTeam(teamLead) {
+        if (teamLead) {
+            this.team.push(teamLead);
+        }
+        return this.team;
+    }
+    getDevelopers() {
+        let dev = [];
+        for (let i = 0; i < this.team.length; i++) {
+            dev.push(this.team[i].dev);
+        }
+    }
+}
+class TeamLead {
+    constructor(_tName) {
+        this._tName = _tName;
+        this.dev = [];
+    }
+    getAllDevelopers() {
+        return this.dev;
+    }
+    addDeveloper(dev) {
+        if (dev) {
+            this.dev.push(dev);
+        }
+        return this.dev;
+    }
+}
+class Developer {
+    constructor(_devName) {
+        this._devName = _devName;
+    }
+}
+const developer1 = new Developer('first Developer');
+const teamLead1 = new TeamLead("first TeamLead");
+const project1 = new Project('first Project');
+const manager1 = new Managers('first Manager');
+const director1 = new Director('first Director');
+const developer2 = new Developer('second Developer');
+const teamLead2 = new TeamLead("second TeamLead");
+const project2 = new Project('second Project');
+const manager2 = new Managers('second Manager');
+const director2 = new Director('second Director');
+teamLead1.addDeveloper(developer1);
+project1.addTeam(teamLead1);
+manager1.addProject(project1);
+director1.addManager(manager1);
+teamLead1.addDeveloper(developer2);
+project1.addTeam(teamLead2);
+manager1.addProject(project2);
+director1.addManager(manager1);
+console.log(director1.getTeams());
 //============================================================================
 // const data = [
 //     {
@@ -325,23 +325,29 @@
 // }
 //
 // const fib = fibonacci1(13)
-let firstNumb = 0;
-let secondNumb = 1;
-let thirdNum = firstNumb + secondNumb;
+//=====================================================================================
 // @ts-ignore
-const fibonacci = (n, i = 2) => {
-    const fib = [];
-    fib.push(firstNumb);
-    if (n > thirdNum && i < n) {
-        fib.push(thirdNum);
-        firstNumb = secondNumb;
-        secondNumb = thirdNum;
-        thirdNum = firstNumb + secondNumb;
-        fib.push(...fibonacci(n, i + 1));
-    }
-    return fib;
-};
-console.log(fibonacci(5));
+// const fibonacci = () => {
+//     let firstNumb = 0
+//     let secondNumb = 1
+//     let thirdNum = firstNumb + secondNumb
+//     const fib: number[] = [0, 1]
+//
+//     return function fubon(n: number, i = 2): any {
+//         if (n > thirdNum && i < n) {
+//             fib.push(thirdNum)
+//             firstNumb = secondNumb
+//             secondNumb = thirdNum
+//             thirdNum = firstNumb + secondNumb
+//             // @ts-ignore
+//             fubon(n, i + 1)
+//         }
+//         return fib
+//     }
+//
+//
+// };
+// console.log(fibonacci()(9))
 // function fibonacci2(num) {
 //     if (num < 2) {
 //         return num;
