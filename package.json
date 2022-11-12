@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/ArturMeliq/Padc_lessons/issues"
   },
-  "homepage": "https://github.com/ArturMeliq/Padc_lessons#readme"
+  "homepage": "https://github.com/ArturMeliq/Padc_lessons#readme",
+  "dependencies": {
+    "cross-fetch": "^3.1.5",
+    "node-fetch": "^3.3.0"
+  }
 }
