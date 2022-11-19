@@ -1,0 +1,24 @@
+<div class="header_button">
+  <div class="container">
+    <ul class="header_button_block">
+      <li class="header_button_block_list" *ngFor="let item of data; let i = index">
+        {{item}}
+      </li>
+      <li *ngFor=" let item of imagesDataUrl" class="header_button_block_list">
+        <img class="header_button_block_image" [src]="item" alt="photo">
+      </li>
+      <div class="manu">
+        <ul class="manu_block" *ngFor="let item of air">
+          <li class="first_item manu_list">
+            {{item}}
+          </li>
+          <li class="manu_list" *ngFor="let item of airDara">
+            {{item}}
+          </li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</div>
+
+
