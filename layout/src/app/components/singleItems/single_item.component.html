@@ -1,0 +1,10 @@
+<div class="container">
+  <h3>Hor Prices</h3>
+  <div class="main_images_block">
+    <div *ngFor="let item of items" class="images_block">
+      <img [src]="item.url" alt="photo">
+      <h6>{{item.title}}</h6>
+      <p>{{item.p}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.container {
+  margin-top: 20px;
+
+  .main_images_block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  h3 {
+    font-size: 200%;
+    line-height: 1.33em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .images_block {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 4);
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+
+    & img {
+      width: 100%;
+      height: 100%;
+    }
+
+    & h6{
+      color: #0e578b;
+      font-size: 130%;
+      line-height: 19px;
+      margin: 10px 0;
+    }
+
+    & p{
+      font-size: 120%;
+      line-height: 1em;
+      color: #333;
+    }
+  }
+}

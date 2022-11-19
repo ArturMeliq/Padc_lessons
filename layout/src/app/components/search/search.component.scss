@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin: 0 auto;
+
+  .block_logo {
+    width: 190px;
+    height: 50px;
+
+    &_image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .search_block {
+    flex: 1;
+    max-width: 440px;
+    width: 10%;
+    display: flex;
+
+    &_input {
+      width: 100%;
+      padding: 5px 5px;
+      font-size: 16px;
+      line-height: 16px;
+      outline: none;
+
+      &:focus {
+        border-color: #0e578b;
+      }
+    }
+
+    &_button {
+      font-size: 16px;
+      min-width: 105px;
+      color: #fff;
+      background: #0d5182;
+      padding: 10px;
+      border: none;
+      margin-left: 5px;
+    }
+  }
+
+  .phone_info a {
+    display: block;
+    color: #333;
+    font-size: 20px;
+    line-height: 25px;
+    text-decoration: none;
+  }
+}
+.action_Block{
+  display: flex;
+  .favorite_block, .compare_block, .basket_block {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    margin: 0 10px;
+    .action_image{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+

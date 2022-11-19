@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="banner_slide">
+    <div *ngFor="let item of bannerImageUrls" class="banner_slide_item">
+      <img [src]="item" alt="photo">
+    </div>
+  </div>
+  <div class="banner_the_rest">
+    <div *ngFor="let item of otherImageUrls">
+      <img [src]="item" alt="photo">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="input-div">
+  <input class="input" [(ngModel)]="name">
+  <button class="button" (click)="handleAddClick($event)">ADD</button>
+</div>
+
+<div class="items_div">
+  <div *ngFor="let person of people" class="items">
+    <h4 class="h4">{{person.name}}</h4>
+    <button [id]="person.id" (click)="handleChangeColorClick($event)"  class="button2" [ngStyle]="{'background-color':person.color}">Change Color</button>
+    <button (click)="handleDeleteClick($event)" [id]="person.id" class="button">X</button>
+  </div>
+</div>
